@@ -1,11 +1,11 @@
 <?php
 namespace app\controller;
 
-use Psr\Http\Message\RequestInterface;
 use think\Request;
 use app\model\Miner as MinerModel;
 use app\BaseController;
 use app\util\Res;
+use app\controller\Upload;
 
 class Miner extends BaseController
 {
@@ -37,11 +37,16 @@ class Miner extends BaseController
     {
         $post = $request->post();
         $miner = MinerModel::where("id", $post["id"])->find();
+
+        $upload = new Upload();
+
+        $url = $upload->index();
+
         $res = $miner->save([
             "name" => $post["name"],
             "price" => $post["price"],
             "cycle" => $post["cycle"],
-            "avatar" => $post["avatar"],
+            "avatar" => $url,
             "description" => $post["description"],
         ]);
 

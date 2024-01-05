@@ -5,6 +5,7 @@ use think\Request;
 use app\model\User as UserModel;
 use app\BaseController;
 use app\util\Res;
+use app\controller\Upload;
 
 class User extends BaseController
 {
@@ -70,10 +71,14 @@ class User extends BaseController
     {
         $post = $request->post();
         $user = UserModel::where("id", $post["id"])->find();
+
+        $upload = new Upload();
+        $url = $upload->index();
+
         $res = $user->save([
             "email" => $post["email"],
             "nickname" => $post["nickname"],
-            "avatar" => $post["avatar"]
+            "avatar" => $url
         ]);
 
         if (!$res) {
