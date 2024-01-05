@@ -16,6 +16,8 @@ Route::get('think', function () {
 
 Route::get('hello/:name', 'index/hello');
 
+Route::post("/upload","upload/upload");
+
 
 Route::group("/user",function(){
 
