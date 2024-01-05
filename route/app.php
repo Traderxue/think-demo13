@@ -34,3 +34,14 @@ Route::group("/user",function(){
     Route::put("/enabled/:id","user/enabled");          //启用
 
 });
+
+Route::group("/bill",function(){
+
+    Route::post("/add","bill/add");
+
+    Route::get("/page","bill/page");
+
+    Route::get("/get/:u_id","bill/getByUid");
+
+    Route::post("/verify/:id","bill/verify");
+});

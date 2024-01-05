@@ -51,4 +51,13 @@ class Bill extends BaseController
         $list = BillModel::where('u_id', $u_id)->select();
         return $this->result->success("获取数据成功", $list);
     }
+
+    public function verify($id){
+        $bill = BillModel::where("id", $id)->find();
+        $res = $bill->save(["verify"=>1]);
+        if($res){
+            return $this->result->success("数据审核成功",$res);
+        }
+        return $this->result->error("审核失败");
+    }
 }
