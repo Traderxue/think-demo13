@@ -85,3 +85,16 @@ Route::group("/order",function(){
     Route::delete("/delete","order/deleteById");
 
 });
+
+Route::group("/admin",function(){
+
+    Route::post("/add","admin/add");
+
+    Route::post("/edit","admin/edit");
+
+    Route::post("/login","admin/login");
+
+    Route::delete("/delete/:id","admin/deleteById");
+
+    Route::get("/page","admin/page");
+});
