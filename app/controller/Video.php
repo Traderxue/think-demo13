@@ -40,4 +40,9 @@ class Video extends BaseController{
         }
         return $this->result->error('删除数据失败');
     }
+
+    public function getList(Request $request){
+        $list = VideoModel::select();
+        return $this->result->success('获取数据成功',$list);
+    }
 }
