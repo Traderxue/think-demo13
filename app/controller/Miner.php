@@ -19,11 +19,16 @@ class Miner extends BaseController
     function add(Request $requst)
     {
         $post = $requst->post();
+
+        $upload = new Upload();
+
+        $url = $upload->index();
+
         $miner = new MinerModel([
             "name" => $post["name"],
             "price" => $post["price"],
             "cycle" => $post["cycle"],
-            "avator" => $post["avator"],
+            "avator" => $url,
             "description" => $post["description"]
         ]);
         $res = $miner->save();
@@ -85,6 +90,15 @@ class Miner extends BaseController
             return $this->result->success('下架成功', $res);
         }
         return $this->result->error('下架失败');
+    }
+
+    function deleteById($id){
+        $res = MinerModel::where("id",$id)->delete();
+
+        if($res){
+            return $this->result->success("删除数据成功",$res);
+        }
+        return $this->result->error("删除数据失败");
     }
 
 }

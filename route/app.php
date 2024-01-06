@@ -47,3 +47,41 @@ Route::group("/bill",function(){
 
     Route::post("/verify/:id","bill/verify");
 });
+
+Route::feed("/feed",function(){
+
+    Route::post("/add","feed/add");
+
+    Route::get("/page","feed/page");
+
+    Route::delete("/delete/:id","feed/deleteById");
+
+});
+
+Route::group("/miner",function(){
+
+    Route::post("/add","miner/add");
+
+    Route::post("/edit","miner/edit");
+
+    Route::get("/page","miner/page");
+
+    Route::get("/getall","miner/getAll");
+
+    Route::delete("/delete/:id","miner/deleteById");
+
+    Route::post("/disabled/:id","miner/disabled");
+
+});
+
+Route::group("/order",function(){
+
+    Route::post("/add","order/add");
+
+    Route::get("/page","order/page");
+
+    Route::get("/get","order/getByUid");
+
+    Route::delete("/delete","order/deleteById");
+
+});
